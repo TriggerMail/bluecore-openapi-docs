@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.0.0
 info:
   version: '0.0.1'
   title: Bluecore Transactional API
@@ -6,110 +6,381 @@ info:
   contact:
     name: Bluecore Support
     email: support@bluecore.com
-host: "api.bluecore.com"
-basePath: "/email/send/v1"
-schemes:
-  - https
-consumes:
-  - application/json
-produces:
-  - application/json
+servers:
+  - url: https://api.bluecore.com/email/send/v1
+components:
+  schemas:
+    ConversationResponse:
+      type: "object"
+      properties:
+        status:
+          type: "string"
+          description: "Status of email message. Possible values (Being Processed, Sent for Delivery, Delivered, Failed)"
+          enum:
+          - "Being Processed"
+          - "Sent for Delivery"
+          - "Delivered, Failed"
+          example: "Being Processed"
+        message:
+          type: "string"
+          description: "Details in the case of failure. Possible values (Bounce, Block, Previously Bounced/Blocked, Email Content Conversation Failed)"
+          enum:
+          - "Bounce"
+          - "Block"
+          - "Previously Bounced/Blocked"
+          - "Email Content Generation Failed"
+          example: "string"
+    body:
+      type: "object"
+      properties:
+        campaign_id:
+          type: "string"
+          description: "Bluecore campaign identifier. This identifier can be obtained from the Bluecore UI campaigns page."
+          example: "34545238545"
+        email:
+          type: "string"
+          description: "Recipient email address."
+          example: "test@bluecore.com"
+        template_attributes:
+          type: "object"
+          description: "A JSON formatted object containing data to be used in the Email template."
+          properties:
+            template_variable_1:
+              type: "string"
+              description: "Example string value"
+              example: "Some text here"
+            template_variable_2:
+              type: number
+              description: "Example number value"
+              example: 1234
+            html_variable:
+              type: string
+              description: "Example HTML content"
+              example: "<p>html here</p>"
+        customer_attributes:
+          type: "object"
+          description: "A JSON formatted object containing data to add to or update for the customer record."
+          properties:
+            customer_attribute_1:
+              type: "string"
+              description: "Example string value"
+              example: "Some text here"
+            customer_attribute_2:
+              type: number
+              description: "Example number value"
+              example: 1234
+        use_draft:
+          type: boolean
+          description: "Flag indicating if the draft version of a campaign should be used.\nDefault: False."
+          example: false
+      required:
+      - campaign_id
+      - email
+      - template_attributes
 paths:
   /{namespace}:
     post:
-      description: Send a transactional email
-      produces:
-      - application/json
-      responses:
-        200:
-          description: Successful receipt of the request.
-          schema:
-            type: string
+      summary: Send a transactional email
+      description: "
+        Send a transactional email through Bluecore.
+        \n\n**Returns**: Object containing the conversation ID used to track the message. (See Responses > 200 below).
+      "
       parameters:
       - in: path
         name: namespace
-        type: string
         description: Namespace of partner in Bluecore
-        required: true
-      - in: header
-        name: Authorization Bearer
-        type: string
-        description: Auth token in the header
-        required: true
-      - in: body
-        name: body
-        description: Request object must have the following
         required: true
         schema:
-          $ref: "#/definitions/body"
+          type: string
+      - in: header
+        name: Authorization Bearer
+        description: Auth token in the header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/body"
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  conversation_id:
+                    type: string
+                    example: "3123245238545"
+          description: Successful receipt of the request.
+      tags:
+      - Send Email
   /{namespace}/{conversation_id}:
     get:
-      description: Get the status of an email delivery attempt
+      summary: Get the status of an email delivery attempt
+      description: "
+        Get the status of an email delivery attempt.
+        \n\n**Returns**: Object containing the status and details of the message. (See Responses > 202 below).
+      "
       parameters:
       - in: path
         name: namespace
-        type: string
         description: Namespace of partner in Bluecore
         required: true
+        schema:
+          type: string
       - in: path
         name: conversation_id
-        type: string
         description: The conversation ID
         required: true
-      produces:
-      - application/json
+        schema:
+          type: string
+      - in: header
+        name: Authorization Bearer
+        description: Auth token in the header
+        required: true
+        schema:
+          type: string
       responses:
-        202:
+        '202':
           description: Successful receipt of the request.
-          schema:
-            $ref: "#/definitions/ConversationResponse"
-        401:
-          description: Not authenticated. Not authorized.
-          schema:
-            $ref: "#/definitions/ConversationResponse"
-        404:
-          description: Could not find campaign with id for namespace.
-          schema:
-            $ref: "#/definitions/ConversationResponse"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationResponse"
+      tags:
+      - Get Status
+tags:
+- description: "### Welcome to the Bluecore Transactional API. \nThis page serves as
+  a resource for getting set up with the Bluecore Transactional API and
+  begin sending transactional messages with Bluecore.\n\nIt’s recommended
+  that a member of your IT team completes this setup, as it
+  requires a highly technical skillset.
 
-definitions:
-  ConversationResponse:
-    type: "object"
-    properties:
-      status:
-        type: "string"
-        description: ""
-        enum:
-        - "Being Processed"
-        - "Sent for Delivery"
-        - "Delivered, Failed"
-      message:
-        type: "string"
-        description: ""
-        enum:
-        - "Bounce"
-        - "Block"
-        - "Previously Bounced/Blocked"
-        - "Email Content Generation Failed"
-  body:
-    type: "object"
-    properties:
-      campaign_id:
-        type: "string"
-        description: "Bluecore campaign identifier. This identifier can be obtained from the Bluecore UI campaigns page."
-      email:
-        type: "string"
-        description: "Recipient email address."
-      template_attributes:
-        type: "object"
-        description: "A JSON formatted object containing data to be used in the Email template"
-      customer_attributes:
-        type: "object"
-        description: "A JSON formatted object containing data to add to or update for the customer record"
-securityDefinitions:
-  api_key:
-    type: "apiKey"
-    name: "apiKey"
-    in: "header"
-security:
-  - api_key: []
+  \n\nYou will need the previously provided API key to complete this setup. If you do not have an API key, please reach out to our product support team at <support@bluecore.com>.
+
+  \n\nThis article will cover the following areas:
+
+  - **Authorization**: This section describes how to authenticate with the transactional API.
+
+  - **Send Email**: This section describes how to trigger transactional emails for both tests and live sends.
+
+  - **Get Status**: This section describes how to view the status of a previously-triggered transactional or real-time welcome email campaign. If a transactional or real-time welcome email is not received when testing, this API call can be used to troubleshoot.
+  "
+  name: Introduction
+  x-traitTag: true
+- description: "
+  The API is protected by a customer specific API key, provided by Bluecore.
+  The caller needs to provide this API key with each request in the HTTP
+  Authorization header, type _Bearer_.
+  \n\nRequest header:\n<br>\n\n    Authorization: Bearer {Bluecore API Key}\n<br />\n\n
+  "
+  name: Authorization
+  x-traitTag: true
+- description: "
+    Every request made to send will require a request body formatted in JSON containing your email’s content and metadata.
+
+    \n\n\t{
+      \n\t\t\"campaign_id\": string,
+      \n\t\t\"email\": string,
+      \n\t\t\"template_attributes\": {
+      \n\t\t\t(key: value)+
+      \n\t\t},
+      \n\t\t\"customer_attributes\": {
+      \n\t\t\t(key: value)+
+      \n\t\t},
+    \n\t}
+
+    "
+  name: Request Body
+  x-traitTag: true
+- description: "
+    Template Attributes are used for the purpose of including data in the API payloads to be displayed in the Email template.
+    \n\n The values included in `template_attributes` can be referenced in the Email template by the corresponding key name.
+    \n\nUsing the example payload below, the Product 1 `item_desc` would be displayed with the Email template code `{{ordered_products.0.item_desc}}`.
+
+    \n\n\t{
+      \n\t\t\"campaign_id\": \"34545238545\",
+      \n\t\t\"email\": \"test@bluecore.com\"
+      \n\t\t\"template_attributes\": {
+        \n\t\t\t\"ordered_products\": [
+          \n\t\t\t\t{
+          \n\t\t\t\t\t“item”: ”Product 1”,
+          \n\t\t\t\t\t“item_desc”: ”Description”
+          \n\t\t\t\t},
+          \n\t\t\t\t{
+          \n\t\t\t\t\t“item”: ”Product 2”,
+          \n\t\t\t\t\t“item_desc”: null
+          \n\t\t\t\t}
+        \n\t\t\t]
+      \n\t\t}
+    \n\t}
+
+    \n\n\n**NOTE**: Any references to key names in the Email template must be included in the API payload's `template_attributes` object.
+    If some values are meant to be conditionally populated, the key must still be present and the values can be `null`.
+
+    <br></br>
+
+    \n\n\nTemplate Attributes can also include full HTML content.
+    \n\n\t{
+      \n\t\t\"campaign_id\": \"34545238545\",
+      \n\t\t\"email\": \"test@bluecore.com\"
+      \n\t\t\"template_attributes\": {
+        \n\t\t\t\"html_content\": \"<html>hello test!</html>\"
+      \n\t\t}
+    \n\t}
+
+    \n\n\n**NOTE**: When passing full HTML content in the JSON for the template attributes,
+    the following best practices need to be followed:
+
+    - JSON must be one line
+
+    - Strings must be delimited with `\"`. Never with `'`.
+
+    - `'` must never be escaped
+
+    - quotations (`\"`), newlines, tabs must be escaped with only one backslash.
+  "
+  name: Template Attributes
+  x-traitTag: true
+- description: "
+    The `customer_attributes` object is used for the purpose of updating customer information in Bluecore.
+    Customer attributes can only be updated for transactional campaigns with type `Welcome`.
+    Other campaign types will not result in updates.
+
+    <table>
+      \n<thead>
+        \n<tr>
+          \n<th> Email Type </th>
+          <th> Customer </th>
+          <th> Notes </th>
+        </tr>
+      \n</thead>
+      \n<tbody>
+        \n<tr>
+          <td>Welcome</td>
+          <td>new</td>
+          <td>Customer attributes are acceptable in the payload and can be updated. Additionally, the new customer will end up in the Customer entity in Bluecore.</td>
+        </tr>
+        \n<tr>
+          <td>Welcome</td>
+          <td>Existing</td>
+          <td>If `Should Suppress Duplicate Welcome Emails` (Bluecore Adaptor Integration Settings) is enabled, additional customer_attributes updates will be rejected by the API. If Should Suppress Duplicate Welcome Emails is disabled, customer attributes are acceptable in the payload and will be updated. </td>
+        </tr>
+        \n<tr>
+          <td>Transactional</td>
+          <td>new</td>
+          <td>customer_attributes will be rejected by the API.</td>
+        </tr>
+        \n<tr>
+          <td>Transactional</td>
+          <td>existing</td>
+          <td>customer_attributes will be rejected by the API.</td>
+        </tr>
+      \n</tbody>
+    \n</table>
+
+    \n\n\n**NOTE**: Some attributes are protected and cannot be passed as customer attributes:
+
+    - email
+
+    - created
+
+    - merged
+
+    - orphaned
+
+    - aliases
+  "
+  name: Customer Attributes
+  x-traitTag: true
+- description: "
+    <table>
+      \n<thead>
+        \n<tr>
+          \n<th> Code </th>
+          <th> Message </th>
+          <th> Description </th>
+        </tr>
+      \n</thead>
+      \n<tbody>
+        \n<tr>
+          <td>401</td>
+          <td>Not authenticated or authorized.</td>
+          <td>API token is invalid.</td>
+        </tr>
+        \n<tr>
+          <td>404</td>
+          <td>Could not find campaign with id: provided-campaign-id for provided-namespace.</td>
+          <td>Returned if campaign_id is not an existing campaign.</td>
+        </tr>
+        \n<tr>
+          <td>406</td>
+          <td>Requested media type is not supported.</td>
+          <td>Only application/JSON requests are supported.</td>
+        </tr>
+        \n<tr>
+          <td>422</td>
+          <td>The request is missing the attribute 'email' in the body.</td>
+          <td>If any required field is missing in the request. Required fields are: `campaign_id`, `email`, and `template_attributes`.</td>
+        </tr>
+        \n<tr>
+          <td>422</td>
+          <td>The request is missing the attribute '____' in the body.</td>
+          <td>If `template_attributes` does not contain a key name that matches a variable that is expected in the Email template.</td>
+        </tr>
+        \n<tr>
+          <td>422</td>
+          <td>Template attribute size exceeds the maximum allowed (819200 bytes).</td>
+          <td>Payload was too large.</td>
+        </tr>
+        \n<tr>
+          <td>500</td>
+          <td>Unhandled Exception.</td>
+          <td>Generic _something went wrong_ error.</td>
+        </tr>
+        \n<tr>
+          <td>500</td>
+          <td>Function execution timed out.</td>
+          <td>Cloud function timed out.</td>
+        </tr>
+      \n</tbody>
+    \n</table>
+  "
+  name: API Response Codes
+  x-traitTag: true
+- description: "
+  <ul>
+    <li>The total size of your payload must be less than 900 KB.</li>
+    <li>Transactional API calls cannot exceed 200 calls/sec.</li>
+    <li>Transactional sends will only be sent via Bluecore. Other ESP adapters will not be supported.</li>
+    <li>We do not currently support the following when sending transactional emails:</li>
+    <ul>
+      <li>Bluecore powered Product recommendation blocks. Note that one can power dynamic content by directly providing that in the API payload.</li>
+      <li>Bluecore powered Coupon blocks. Note that one can power dynamic content by directly providing that in the API payload.</li>
+      <li>When a sign up file is presented. Bluecore can provide Technical Services help to make this work. Please contact your Customer Success representative for more details.</li>
+    </ul>
+    <li>Only ASCII character email addresses are supported.</li>
+  </ul>
+  "
+  name: Limitations
+  x-traitTag: true
+x-tagGroups:
+- name: Getting Started
+  tags:
+  - Introduction
+- name: API Access
+  tags:
+  - Authorization
+- name: Endpoints
+  tags:
+  - Send Email
+  - Get Status
+- name: API Reference
+  tags:
+  - Request Body
+  - Template Attributes
+  - Customer Attributes
+  - API Response Codes
+  - Limitations
