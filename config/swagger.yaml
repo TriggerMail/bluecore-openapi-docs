@@ -6,6 +6,10 @@ info:
   contact:
     name: Bluecore Support
     email: support@bluecore.com
+  x-logo:
+    url: "https://lever-client-logos.s3.amazonaws.com/5120f935-1efc-496f-9976-49e6d2040bfe-1550684420398.png"
+    backgroundColor: "#FAFAFA"
+    altText: "Bluecore logo"
 servers:
   - url: https://api.bluecore.com/email/send/v1
 components:
