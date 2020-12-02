@@ -47,7 +47,7 @@ components:
           example: "test@bluecore.com"
         template_attributes:
           type: "object"
-          description: "A JSON formatted object containing data to be used in the Email template."
+          description: "A JSON formatted object containing data to be used in the Email template. "
           properties:
             template_variable_1:
               type: "string"
@@ -223,6 +223,7 @@ tags:
 
     \n\n\n**NOTE**: Any references to key names in the Email template must be included in the API payload's `template_attributes` object.
     If some values are meant to be conditionally populated, the key must still be present and the values can be `null`.
+    Alternatively, if there are no variables in the Email template and therefor no data to pass through `template_attributes`, the request body must still include `template_attributes` as an empty object (`{}`).
 
     <br></br>
 
