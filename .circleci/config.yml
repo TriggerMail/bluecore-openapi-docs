@@ -33,5 +33,6 @@ jobs:
             ls
             if [[ $CIRCLE_BRANCH == 'master' ]]; then
               ./auth_gcloud.sh
+              ls
               gsutil -h "Cache-Control:public,max-age=3600" -m rsync -a public-read -d -r ./config/ gs://bluecore-openapi-docs/
             fi
