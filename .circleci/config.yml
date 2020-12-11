@@ -1,13 +1,35 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+version: 2
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  build_and_upload:
     jobs:
-      - welcome/run
+      - build:
+          context: build-global
+jobs:
+  build:
+    docker:
+      # This image holds our core dependencies for building/deploying
+      # including the necessary private pypi repository token to upload it when merged to master.
+      - image: $BUILD_CONTAINER_IMAGE
+        auth:
+          # reserved username for authenticating against a docker registry
+          # https://cloud.google.com/container-registry/docs/advanced-authentication
+          username: _json_key
+          # Set this through CircleCI's environment variables. Copy from trigger_mail.
+          password: $TRIGGERMAIL_GCR_AUTH
+    working_directory: ~/project/integrations
+    steps:
+      - checkout
+      - run:
+          name: Set Bluecore environment and tools
+          # $BASH_ENV is a reserved environment variable by CircleCI of the location
+          # of their bashrc file. This allow us to add to the whole run's available commands easily.
+          command: |
+            ~/devenv/bluecore activate >> $BASH_ENV
+      - run:
+          name: Deploy to GCS (cdn.bluecore.com)
+          command: |
+            if [[ $CIRCLE_BRANCH == 'master' ]]; then
+              ./auth_gcloud.sh
+              gsutil -h "Cache-Control:public,max-age=3600" -m rsync -a public-read -d -r config/ gs://bluecore-openapi-docs/
+            fi
