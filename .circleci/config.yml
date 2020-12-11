@@ -32,6 +32,8 @@ jobs:
             pwd
             ls
             if [[ $CIRCLE_BRANCH == 'master' ]]; then
-              ./auth_gcloud.sh
+              echo $GCLOUD_ACCOUNT_CRED > gcloud.json
+              gcloud auth activate-service-account 270647425515-it0qf6jth5r14sot1oifartsm52cbe60@developer.gserviceaccount.com --key-file gcloud.json
+              gcloud config set project triggeredmail
               gsutil -h "Cache-Control:public,max-age=3600" -m rsync -a public-read -d -r ./config/ gs://bluecore-openapi-docs/
             fi
