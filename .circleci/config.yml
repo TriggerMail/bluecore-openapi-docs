@@ -17,7 +17,7 @@ jobs:
           username: _json_key
           # Set this through CircleCI's environment variables. Copy from trigger_mail.
           password: $TRIGGERMAIL_GCR_AUTH
-    working_directory: ~/project/
+    working_directory: ~/project
     steps:
       - checkout
       - run:
@@ -29,6 +29,7 @@ jobs:
       - run:
           name: Deploy to GCS (cdn.bluecore.com)
           command: |
+            pwd
             if [[ $CIRCLE_BRANCH == 'master' ]]; then
               ./auth_gcloud.sh
               gsutil -h "Cache-Control:public,max-age=3600" -m rsync -a public-read -d -r ./config/ gs://bluecore-openapi-docs/
