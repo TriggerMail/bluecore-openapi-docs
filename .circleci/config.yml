@@ -27,7 +27,7 @@ jobs:
           command: |
             ~/devenv/bluecore activate >> $BASH_ENV
       - run:
-          name: Deploy to GCS (cdn.bluecore.com)
+          name: Deploy to GCS
           command: |
             pwd
             ls
