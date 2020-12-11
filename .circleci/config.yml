@@ -29,10 +29,8 @@ jobs:
       - run:
           name: Deploy to GCS
           command: |
-            pwd
-            ls
             if [[ $CIRCLE_BRANCH == 'master' ]]; then
-              sh ./auth_gcloud.sh
+              ./auth_gcloud.sh
               ls
               gsutil -h "Cache-Control:public,max-age=3600" -m rsync -a public-read -d -r ./config/ gs://bluecore-openapi-docs/
             fi
