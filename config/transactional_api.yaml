@@ -169,7 +169,7 @@ tags:
   Please provide this API key with each request
   in the HTTP Authorization header, type _Bearer_.
 
-  \n\nExample request header:\n<br>\n\n    Authorization: Bearer {Bluecore API Key}\n<br />\n\n
+  \n\nExample request header:\n\n\n    Authorization: Bearer {Bluecore API Key}\n\n\n
   "
   name: AUTHORIZATION
   x-traitTag: true

@@ -1,0 +1,45 @@
+/*Main Title in the doc*/
+.api-content > .hBHSsv:first-of-type {
+    padding: 30px 0px !important;
+}
+
+/* divs around each x-tagGroup */
+div[id*="tag/"] {
+    padding: 30px 0px !important;
+}
+
+/* header text within each x-tagGroup label */
+h1 {
+    color: red !important;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0px !important;
+    margin-block-end: 0px !important;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+/* --- ENDPOINTS SECTION START --- */
+/* Pretty terrible, but this is the selector for each Endpoint in the transactional API*/
+div#tag\/SEND-EMAIL.sc-AxhUy.hBHSsv, div#tag\/GET-STATUS.sc-AxhUy.hBHSsv {
+    padding: 30px 0px 0px 0px !important;
+}
+
+div[id*="/paths/"] {
+    padding: 0px 0px 30px 0px !important;
+}
+
+/* URL dropdown buttons on top of body exapmles */
+div.dAvxTh {
+    cursor: pointer !important;
+    position: relative !important;
+    margin: 15px !important;
+}
+
+/* buttons for "Payload" or "Response Samples" */
+.react-tabs__tab-list {
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+}
+/* --- ENDPOINT SECTION END --- */

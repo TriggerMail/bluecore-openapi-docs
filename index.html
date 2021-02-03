@@ -2,24 +2,21 @@
 <html>
   <head>
     <title>Bluecore Transactional API</title>
-    <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-
-    <!--
-    ReDoc doesn't change outer page styles
-    -->
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <!-- Live CSS FILE -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://storage.googleapis.com/download/storage/v1/b/bluecore-openapi-docs/transactional_api.css"> -->
+    <!-- LOCAL CSS FILE -->
+    <link type="text/css" rel="stylesheet" href="./css/transactional_api.css">
   </head>
   <body>
+    <!-- LIVE CONFIG FILE -->
     <!-- <redoc spec-url='https://storage.googleapis.com/download/storage/v1/b/bluecore-openapi-docs/o/transactional_api.yaml?alt=media' hide-download-button></redoc> -->
+
+    <!-- LOCAL CONFIG FILE -->
     <redoc spec-url='./config/transactional_api.yaml' hide-download-button></redoc>
+    <!-- Redoc script that parses config file and generates frontend -->
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
   </body>
 </html>
