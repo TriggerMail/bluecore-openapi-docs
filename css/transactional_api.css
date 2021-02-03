@@ -10,7 +10,6 @@ div[id*="tag/"] {
 
 /* header text within each x-tagGroup label */
 h1 {
-    color: red !important;
     display: block;
     font-size: 2em;
     margin-block-start: 0px !important;
