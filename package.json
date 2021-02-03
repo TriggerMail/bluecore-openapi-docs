@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "edit": "openapi-editor --file ./config/swagger.yaml --port 8080",
+    "edit": "openapi-editor --file ./config/transactional_api.yaml --port 8080",
     "open-redoc": "live-server"
   }
 }
