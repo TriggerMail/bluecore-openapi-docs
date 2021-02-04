@@ -1,3 +1,29 @@
+h1, h2, h3, h4, h5, p, span {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+h2, h3 {
+    margin: 30px 0px !important;
+}
+
+h1 {
+    font-size: 33px !important;
+}
+
+h2 {
+    font-size: 22px !important;
+}
+
+p, li {
+    font-size: 17px !important;
+    line-height: 1.53 !important;
+}
+
+.redoc-json {
+    font-size: 15px !important;
+    line-height: 1.53 !important;
+}
+
 /* --- HEADERS SECTION START --- */
 /*Main Title in the doc*/
 .api-content > .hBHSsv:first-of-type {
@@ -13,8 +39,8 @@ div[id*="tag/"] {
 h1 {
     display: block;
     font-size: 2em;
-    margin-block-start: 0px !important;
-    margin-block-end: 0px !important;
+    margin-block-start: 10px !important;
+    margin-block-end: 10px !important;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
@@ -46,3 +72,6 @@ div.dAvxTh {
     margin-block-end: 1em !important;
 }
 /* --- ENDPOINT SECTION END --- */
+
+
+
