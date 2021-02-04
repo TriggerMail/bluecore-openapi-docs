@@ -1,3 +1,4 @@
+/* spacing around specific headers in the doc */
 h3#welcome-to-the-bluecore-transactional-api, h2 {
     padding: 10px 0 10px 0 !important;
 }
