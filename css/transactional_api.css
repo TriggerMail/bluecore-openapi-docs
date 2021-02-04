@@ -14,17 +14,35 @@ h2 {
     font-size: 22px !important;
 }
 
-p, li {
-    font-size: 17px !important;
-    line-height: 1.53 !important;
+h5 {
+    font-size: 15px !important;
 }
 
-.redoc-json {
+p.api-content, li.api-content {
+    font-size: 17px !important;
+    line-height: 1.53 !important;
+    font-weight: 300 !important;
+}
+
+/* Sidebar links */
+.jIStei {
+    font-size: 0.8em !important;
+}
+
+/* labels for each parameter in the request */
+.sc-fzqBZW.sc-fzoyAV.eGbWXV {
+    font-size: 15px !important;
+}
+
+.react-tabs__tab-panel, span.sc-fzoVTD.yvLAA {
     font-size: 15px !important;
     line-height: 1.53 !important;
 }
 
-/* --- HEADERS SECTION START --- */
+.sc-qQmou.hnIgFW {
+    font-size: 15px;
+}
+
 /*Main Title in the doc*/
 .api-content > .hBHSsv:first-of-type {
     padding: 30px 0px !important;
@@ -45,11 +63,9 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-/* --- HEADERS SECTION END --- */
 
 
 
-/* --- ENDPOINTS SECTION START --- */
 /* Pretty terrible, but this is the selector for each Endpoint in the transactional API*/
 div#tag\/SEND-EMAIL.sc-AxhUy.hBHSsv, div#tag\/GET-STATUS.sc-AxhUy.hBHSsv {
     padding: 30px 0px 0px 0px !important;
@@ -71,7 +87,3 @@ div.dAvxTh {
     margin-block-start: 1em !important;
     margin-block-end: 1em !important;
 }
-/* --- ENDPOINT SECTION END --- */
-
-
-
