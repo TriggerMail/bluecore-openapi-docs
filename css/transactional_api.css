@@ -1,8 +1,3 @@
-/* spacing around specific headers in the doc */
-h3#welcome-to-the-bluecore-transactional-api, h2 {
-    padding: 10px 0 10px 0 !important;
-}
-
 /* URL dropdown buttons on top of body exapmles */
 div.dAvxTh {
     cursor: pointer !important;
@@ -20,4 +15,9 @@ div.dAvxTh {
 h3.sc-fzpans.czQAZT {
     margin-block-start: 1em !important;
     margin-block-end: 1em !important;
+}
+
+/* spacing around specific headers in the doc */
+h3#welcome-to-the-bluecore-transactional-api, h2 {
+    padding: 10px 0 10px 0 !important;
 }
