@@ -1,3 +1,4 @@
+/*
 h1, h2, h3, h4, h5, p, span {
     font-family: "Montserrat", sans-serif !important;
 }
@@ -18,18 +19,27 @@ h5 {
     font-size: 15px !important;
 }
 
-p.api-content, li.api-content {
+.api-content p,  li.api-content {
     font-size: 17px !important;
     line-height: 1.53 !important;
     font-weight: 300 !important;
 }
 
-/* Sidebar links */
+Sidebar links
 .jIStei {
+    cursor: pointer;
+    color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 12.5px 20px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-family: Montserrat, sans-serif;
     font-size: 0.8em !important;
+    text-transform: none;
 }
 
-/* labels for each parameter in the request */
+labels for each parameter in the request
 .sc-fzqBZW.sc-fzoyAV.eGbWXV {
     font-size: 15px !important;
 }
@@ -42,18 +52,19 @@ p.api-content, li.api-content {
 .sc-qQmou.hnIgFW {
     font-size: 15px;
 }
+*/
 
-/*Main Title in the doc*/
+/* Main Title in the doc
 .api-content > .hBHSsv:first-of-type {
     padding: 30px 0px !important;
 }
 
-/* divs around each x-tagGroup */
+divs around each x-tagGroup
 div[id*="tag/"] {
     padding: 30px 0px !important;
 }
 
-/* header text within each x-tagGroup label */
+header text within each x-tagGroup label
 h1 {
     display: block;
     font-size: 2em;
@@ -64,9 +75,9 @@ h1 {
     font-weight: bold;
 }
 
+*/
 
-
-/* Pretty terrible, but this is the selector for each Endpoint in the transactional API*/
+/* Pretty terrible, but this is the selector for each Endpoint in the transactional API
 div#tag\/SEND-EMAIL.sc-AxhUy.hBHSsv, div#tag\/GET-STATUS.sc-AxhUy.hBHSsv {
     padding: 30px 0px 0px 0px !important;
 }
@@ -74,16 +85,22 @@ div#tag\/SEND-EMAIL.sc-AxhUy.hBHSsv, div#tag\/GET-STATUS.sc-AxhUy.hBHSsv {
 div[id*="/paths/"] {
     padding: 0px 0px 30px 0px !important;
 }
+*/
 
 /* URL dropdown buttons on top of body exapmles */
 div.dAvxTh {
     cursor: pointer !important;
     position: relative !important;
-    margin: 15px !important;
+    margin: 15px 0 15px 0 !important;
 }
 
 /* buttons for "Payload" or "Response Samples" */
 .react-tabs__tab-list {
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+}
+/* */
+h3.sc-fzpans.czQAZT {
     margin-block-start: 1em !important;
     margin-block-end: 1em !important;
 }
