@@ -76,10 +76,10 @@ components:
 paths:
   /{namespace}:
     post:
-      summary: Send a transactional or real-time welcome email
+      summary: Send a Transactional or Real-Time Welcome Email
       description: "
         This section details how to send a transactional or real-time welcome email through Bluecore.
-        \n\n**Returns**: Object containing the conversation ID used to track the message. (See Responses > 200 below).
+        \n\n**Returns**: Object containing the conversation ID used to track the message. (See <span id='response-code-text'>**Responses > 202**</span> below).
       "
       parameters:
       - in: path
@@ -115,10 +115,10 @@ paths:
       - SEND EMAIL
   /{namespace}/{conversation_id}:
     get:
-      summary: Get the status of an email delivery attempt
+      summary: Get the Status of an Email Delivery Attempt
       description: "
         This section details how to get the status of an email delivery attempt.
-        \n\n**Returns**: Object containing the status and details of the message. (See Responses > 202 below).
+        \n\n**Returns**: Object containing the status and details of the message. (See <span id='response-code-text'>**Responses > 202**</span> below).
       "
       parameters:
       - in: path
@@ -149,9 +149,9 @@ paths:
       tags:
       - GET STATUS
 tags:
-- description: "### Welcome to the Bluecore Transactional API.
+- description: "### Welcome to the Bluecore Transactional API
   \nUse this resource to integrate with Bluecore’s Transactional API to begin sending transactional and real-time welcome emails with Bluecore.
-  \n\nBluecore recommends that a member of your IT team complex this setup, as it requires a highly technical skillset.
+  \n\nBluecore recommends that a member of your IT team complete this setup, as it requires a highly technical skillset.
   This document covers the following areas:
 
   - **Authorization**: This section describes how to authenticate with the Transactional API.
@@ -192,8 +192,8 @@ tags:
   x-traitTag: true
 - description: "
     Template attributes are used to include data in the API payloads to display in the email template.
-    \n\n The values in `template_attributes` can be referenced in the email template by the corresponding key name.
-    \n\nUsing the example payload below, the Product 1 `item_desc` would be displayed with the email template code `{{ordered_products.0.item_desc}}`.
+    \n\n\n The values in `template_attributes` can be referenced in the email template by the corresponding key name.
+    \n\n\nUsing the example payload below, the Product 1 `item_desc` would be displayed with the email template code `{{ordered_products.0.item_desc}}`.
 
     \n\n\t{
       \n\t\t\"campaign_id\": \"34545238545\",
@@ -236,14 +236,13 @@ tags:
 
     - `'` must never be escaped.
 
-    - quotations (`\"`), newlines, tabs must be escaped with only one backslash.
+    - Quotations (`\"`), newlines, tabs must be escaped with only one backslash.
   "
   name: TEMPLATE ATTRIBUTES
   x-traitTag: true
 - description: "
     The `customer_attributes` object is used for the purpose of updating customer information in Bluecore.
-    Only requests sent to real-time welcome campaigns can update customer attributes in Bluecore.
-    Other campaign types will not result in updates to customer attributes.
+    Only real-time welcome campaigns will result in updates to customer attributes.
 
     <table>
       \n<thead>
@@ -314,7 +313,7 @@ tags:
         \n<tr>
           <td>406</td>
           <td>Requested media type is not supported.</td>
-          <td>Only application/JSON requests are supported.</td>
+          <td>Only <code>application/json</code> requests are supported.</td>
         </tr>
         \n<tr>
           <td>422</td>
@@ -360,9 +359,8 @@ tags:
     <li>Transactional or real-time welcome sends will only be sent via Bluecore. Other ESP adapters will not be supported.</li>
     <li>We do not currently support the following when sending transactional or real-time welcome emails:</li>
     <ul>
-      <li>Bluecore powered Product recommendation blocks. Note that one can power dynamic content by directly providing that in the API payload.</li>
-      <li>Bluecore powered Coupon blocks. Note that one can power dynamic content by directly providing that in the API payload.</li>
-      <li>When a sign up file is presented. Bluecore can provide Technical Services help to make this work. Please contact your Customer Success representative for more details.</li>
+      <li>Bluecore powered product recommendation blocks. Use dynamic content by providing it directly into the API payload.</li>
+      <li>Bluecore powered coupon blocks. Use dynamic content by providing it directly into the API payload.</li>
     </ul>
     <li>Only ASCII character email addresses are supported.</li>
   </ul>

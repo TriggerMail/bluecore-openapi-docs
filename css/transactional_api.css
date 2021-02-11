@@ -21,3 +21,7 @@ h3.sc-fzpans.czQAZT {
 h3#welcome-to-the-bluecore-transactional-api, h2 {
     padding: 10px 0 10px 0 !important;
 }
+
+span#response-code-text {
+    color: green !important;
+}
