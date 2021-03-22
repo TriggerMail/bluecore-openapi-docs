@@ -1,6 +1,5 @@
 openapi: 3.0.0
 info:
-  version: '0.0.1'
   title: Bluecore Transactional API
 servers:
   - url: https://api.bluecore.com/email/send/v1
