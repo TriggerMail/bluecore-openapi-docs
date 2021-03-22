@@ -173,7 +173,7 @@ tags:
   name: AUTHORIZATION
   x-traitTag: true
 - description: "
-    Every request made requires a request body formatted in JSON containing your emails contents and metadata.
+    Every request made requires a request body formatted in JSON containing your email's contents and metadata.
 
     \n\n\t{
       \n\t\t\"campaign_id\": string,
