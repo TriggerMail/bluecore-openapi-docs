@@ -102,3 +102,4 @@ Short Term:
 Long Term:
 - Identify other external APIs that need updated API docs
 - Identify a better enterprise hosting solution for docs. The current solution of hosting our API docs on the marketing website is not ideal. There are limitations on Wordpress, such as URL structure for when we push up multiple pages, unconfigurable links in the nav bar and marketing bot widgets, etc.
+
