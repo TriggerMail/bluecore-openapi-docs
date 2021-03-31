@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Bluecore Transactional API
 servers:
-  - url: https://api.bluecore.com/email/send/v1
+  - url: https://api.bluecore.com/email/
 components:
   schemas:
     ConversationResponse:
@@ -73,7 +73,7 @@ components:
       - email
       - template_attributes
 paths:
-  /{namespace}:
+  /send/v1/{namespace}:
     post:
       summary: Send a Transactional or Real-Time Welcome Email
       description: "
@@ -112,7 +112,7 @@ paths:
           description: Successful receipt of the request.
       tags:
       - SEND EMAIL
-  /{namespace}/{conversation_id}:
+  /status/v1/{namespace}/{conversation_id}:
     get:
       summary: Get the Status of an Email Delivery Attempt
       description: "
