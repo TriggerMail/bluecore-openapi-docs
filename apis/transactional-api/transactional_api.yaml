@@ -160,6 +160,8 @@ tags:
   - **Get Status**: This section describes how to view the status of a previously-triggered transactional or real-time welcome email campaign. If a transactional or real-time welcome email is not received when testing, this API call can be used to troubleshoot.
 
   \n\n**NOTE**: You will need the previously provided API key to complete this setup. If you do not have an API key, please reach out to our Product Support team at <support@bluecore.com>.
+
+  \n**NOTE**: The transactional API is intended for server-to-server communication only. Calling the transactional API from a browser can expose your API token publicly. If you've attempted this already, you should immediately reach out to Bluecore support to cycle your API token.
   "
   name: INTRODUCTION
   x-traitTag: true
