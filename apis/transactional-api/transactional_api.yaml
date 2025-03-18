@@ -68,6 +68,18 @@ components:
           type: boolean
           description: "A flag indicating if the draft version of a campaign should be used.\nDefault: False."
           example: false
+        product_ids:
+          type: array
+          items:
+            type: "string"
+            example: "3bs7705f6n3d2"
+          description: |
+            This parameter is currently in development and is not available for general use at this time. This will be available in a future release.
+            
+            List of product ids to be used as input products only if the campaign uses the co-recommendations product block.
+            
+            Bluecore recommends sending one Product ID per API call.
+
       required:
       - campaign_id
       - email
@@ -339,7 +351,23 @@ tags:
         \n<tr>
           <td>500</td>
           <td>Function execution timed out.</td>
-          <td>Cloud function timed out.</td>
+          <td>Cloud function timed out. <br>If the error persists, send a message to support@bluecore.com to create a support ticket and include the <code>request_id</code> located in the error response.</td>
+        </tr>
+        \n<tr>
+          <td>502</td>
+          <td>Internal error.</td>
+          <td>
+          See Retry logic.</td>
+        </tr>
+        \n<tr>
+          <td>503</td>
+          <td>Service unavailable.</td>
+          <td>See Retry logic.</td>
+        </tr>
+        \n<tr>
+          <td>504</td>
+          <td>Gateway timeout.</td>
+          <td>If the error persists, send a message to support@bluecore.com to create a support ticket and include the <code>request_id</code> located in the error response.</td>
         </tr>
       \n</tbody>
     \n</table>
