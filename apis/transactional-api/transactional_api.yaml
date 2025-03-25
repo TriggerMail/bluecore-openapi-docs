@@ -77,8 +77,6 @@ components:
             This parameter is currently in development and is not available for general use at this time. This will be available in a future release.
             
             List of product ids to be used as input products only if the campaign uses the co-recommendations product block.
-            
-            Bluecore recommends sending one Product ID per API call.
 
       required:
       - campaign_id
