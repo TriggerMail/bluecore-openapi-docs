@@ -349,23 +349,19 @@ tags:
         \n<tr>
           <td>500</td>
           <td>Function execution timed out.</td>
-          <td>Cloud function timed out. <br>If the error persists, send a message to support@bluecore.com to create a support ticket and include the <code>request_id</code> located in the error response.</td>
+          <td rowspan=4>Bluecore recommends retrying the request. See retry logic recommendations in API Limits.<br>If the error persists, send a message to support@bluecore.com to create a support ticket and include the <code>request_id</code> located in the error response.</td>
         </tr>
         \n<tr>
           <td>502</td>
           <td>Internal error.</td>
-          <td>
-          See Retry logic.</td>
         </tr>
         \n<tr>
           <td>503</td>
           <td>Service unavailable.</td>
-          <td>See Retry logic.</td>
         </tr>
         \n<tr>
           <td>504</td>
           <td>Gateway timeout.</td>
-          <td>If the error persists, send a message to support@bluecore.com to create a support ticket and include the <code>request_id</code> located in the error response.</td>
         </tr>
       \n</tbody>
     \n</table>
@@ -381,8 +377,9 @@ tags:
   x-traitTag: true
 - description: "
   <ul>
+    <li>Bluecore recommends retrying API calls with an exponential backoff, starting with the minimum backoff of 30 seconds and maximum backoff of at least five minutes, for a maximum of five retries.</li>
+    <li>To promote fair access and optimal performance, Bluecore enforces rate limiting. Bluecore recommends a maximum of 200 calls/second.</li>
     <li>The total size of your payload must be less than 900 KB.</li>
-    <li>Transactional API calls cannot exceed 200 calls/sec.</li>
     <li>Transactional or real-time welcome sends will only be sent via Bluecore. Other ESP adapters will not be supported.</li>
     <li>We do not currently support the following when sending transactional or real-time welcome emails:</li>
     <ul>
