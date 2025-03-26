@@ -37,7 +37,7 @@ We chose to host the API Docs on Wordpress mainly because this was a solution th
 
 
 ## Deployment
-Whenever changes are merged into `master` on GitHub, CircleCI will take the files in `./apis` and upload them to a public Google Cloud Storage bucket (specifically [bluecore-openapi-docs](https://console.cloud.google.com/storage/browser/bluecore-openapi-docs;tab=objects?forceOnBucketsSortingFiltering=false&project=triggeredmail&prefix=&forceOnObjectsSortingFiltering=false)).
+Whenever changes are merged into `master` on GitHub, manually upload them to the public Google Cloud Storage bucket (specifically [bluecore-openapi-docs](https://console.cloud.google.com/storage/browser/bluecore-openapi-docs;tab=objects?forceOnBucketsSortingFiltering=false&project=triggeredmail&prefix=&forceOnObjectsSortingFiltering=false)). This had been handled by CircleCI when any changes are merged and all of the files in `./apis` were deployed to GCS. This is no longer the case and since we're going to be migrating away from this API (Q1 2025), it's not worth implementing an automated deployment.
 
 The corresponding Wordpress page pulls the config YAML file from Google Cloud Storage.
 E.g. from the Wordpress set up of the Bluecore Transactional API Docs
@@ -49,11 +49,11 @@ E.g. from the Wordpress set up of the Bluecore Transactional API Docs
 <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
 ```
 
-When any changes are merged, all of the files in `./apis` will be deployed to GCS, and those changes will be reflected the next time the browser is loaded.
-
 
 ## How Do I Add New API Doc Pages?
-Follow the steps below to create new docs for another Bluecore API:
+You don't. We're not actively adding anything new here. Just updating the existing docs as needed for the Transactional API. New APIs should follow the new standard being established in Q1 2025.
+
+The following steps below to create new docs for another Bluecore API are here for historical purposes (again do not add new APIs here):
 
 #### Make a Config File
 Make a new directory in `./apis/` with the name of the API (e.g. `mobile-events-api-v1`).
@@ -89,17 +89,7 @@ The `href` and `spec-url`s follow Google Cloud Storage's URL format for [downloa
 
 
 #### Deploy to GCS
-Merge to master and verify your new docs have been deployed by going to [Google Cloud Storage](https://console.cloud.google.com/storage/browser/bluecore-openapi-docs;tab=objects?forceOnBucketsSortingFiltering=false&project=triggeredmail&prefix=&forceOnObjectsSortingFiltering=false) and looking for your files.
+Merge to master, upload to [Google Cloud Storage](https://console.cloud.google.com/storage/browser/bluecore-openapi-docs;tab=objects?forceOnBucketsSortingFiltering=false&project=triggeredmail&prefix=&forceOnObjectsSortingFiltering=false) 
+then go validate the [live version of your docs](https://www.bluecore.com/apis/transactional-api/)!
 
-Finally, go to the live page on www.bluecore.com/your-api-here and check the live version of your docs!
-
-
-## Next Steps
-Short Term:
-- Gather feedback from internal users
-- Migrate the Bluecore Transactional API docs on KB to the new doc
-
-Long Term:
-- Identify other external APIs that need updated API docs
-- Identify a better enterprise hosting solution for docs. The current solution of hosting our API docs on the marketing website is not ideal. There are limitations on Wordpress, such as URL structure for when we push up multiple pages, unconfigurable links in the nav bar and marketing bot widgets, etc.
 
