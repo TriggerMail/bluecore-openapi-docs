@@ -25,7 +25,7 @@ e.g. HTML
   <body>
     <redoc spec-url='https://storage.googleapis.com/download/storage/v1/b/bluecore-openapi-docs/o/transactional-api%2Ftransactional_api.yaml?alt=media' hide-download-button></redoc>
 
-    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@2.5.4/bundles/redoc.standalone.js"> </script>
   </body>
 ```
 
@@ -46,7 +46,7 @@ E.g. from the Wordpress set up of the Bluecore Transactional API Docs
 <redoc spec-url='https://storage.googleapis.com/download/storage/v1/b/bluecore-openapi-docs/o/config_files%2Ftransactional_api.yaml?alt=media' hide-download-button></redoc>
 
 <!-- Redoc script -->
-<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/redoc@2.5.4/bundles/redoc.standalone.js"> </script>
 ```
 
 
@@ -82,7 +82,7 @@ The page contents should include the `<script>` tag to load Redoc on the page al
 <redoc spec-url='https://storage.googleapis.com/download/storage/v1/b/bluecore-openapi-docs/o/config_files%2Ftransactional_api.yaml?alt=media' hide-download-button></redoc>
 
 <!-- Redoc script -->
-<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/redoc@2.5.4/bundles/redoc.standalone.js"> </script>
 ```
 
 The `href` and `spec-url`s follow Google Cloud Storage's URL format for [downloading Cloud Storage objects](https://cloud.google.com/storage/docs/downloading-objects).
